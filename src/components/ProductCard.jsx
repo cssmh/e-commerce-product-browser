@@ -6,7 +6,7 @@ const ProductCard = ({ product }) => (
       <img
         src={product.image}
         alt={product.title}
-        className="h-64 w-full object-cover"
+        className="h-64 mt-3 mx-auto object-contain"
       />
       <div className="absolute top-2 left-2 bg-yellow-400 text-xs text-gray-900 font-bold px-2 py-1 rounded-full">
         {product.category}
