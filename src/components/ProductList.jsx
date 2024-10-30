@@ -13,8 +13,8 @@ const ProductList = () => {
 
   if (isLoading) {
     return (
-      <div className="product-list grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {Array.from({ length: 8 }).map((_, index) => (
+      <div className="product-list grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 gap-4">
+        {Array.from({ length: 6 }).map((_, index) => (
           <div
             key={index}
             className="product-card p-4 border rounded shadow animate-pulse"
