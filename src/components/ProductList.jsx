@@ -3,10 +3,9 @@ import ProductCard from "./ProductCard";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
-const ProductList = () => {
+const ProductList = ({ category, searchTerm }) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(6);
-  const [category, setCategory] = useState("All");
 
   const { data: products = [], isLoading } = useQuery({
     queryKey: ["products"],
@@ -16,14 +15,17 @@ const ProductList = () => {
     },
   });
 
-  const filteredProducts =
-    category === "All"
-      ? products
-      : products.filter((product) => product.category === category);
+  const filteredProducts = products.filter((product) => {
+    const matchesCategory = category === "All" || product.category === category;
+    const matchesSearch = product.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
-  const totalProducts = filteredProducts?.length;
+  const totalProducts = filteredProducts.length;
   const totalPages = Math.ceil(totalProducts / limit);
-  const paginatedProducts = filteredProducts?.slice(
+  const paginatedProducts = filteredProducts.slice(
     (page - 1) * limit,
     page * limit
   );
@@ -49,28 +51,8 @@ const ProductList = () => {
 
   return (
     <div className="product-list">
-      <div className="flex items-center justify-end mb-4">
-        <label htmlFor="category" className="mr-2">
-          Filter by Category:
-        </label>
-        <select
-          id="category"
-          value={category}
-          onChange={(e) => {
-            setCategory(e.target.value);
-            setPage(1);
-          }}
-          className="border rounded-md border-gray-300 p-2 outline-none"
-        >
-          <option value="All">All</option>
-          <option value="electronics">Electronics</option>
-          <option value="jewelery">Jewelery</option>
-          <option value="men's clothing">Men's Clothing</option>
-          <option value="women's clothing">Women's Clothing</option>
-        </select>
-      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 gap-4">
-        {paginatedProducts?.map((product) => (
+        {paginatedProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
