@@ -7,21 +7,23 @@ const ProductList = ({ category, searchTerm }) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(6);
 
+  const url =
+    category === "All"
+      ? "https://fakestoreapi.com/products"
+      : `https://fakestoreapi.com/products/category/${category}`;
   const { data: products = [], isLoading } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", category],
     queryFn: async () => {
-      const res = await axios.get("https://fakestoreapi.com/products");
-      return res?.data;
+      const { data } = await axios.get(url);
+      return data;
     },
   });
-  // console.log(products);
 
-  const filteredProducts = products.filter((product) => {
-    const matchesCategory = category === "All" || product.category === category;
+  const filteredProducts = products?.filter((product) => {
     const matchesSearch = product.title
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return matchesSearch;
   });
 
   const totalProducts = filteredProducts.length;
