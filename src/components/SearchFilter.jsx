@@ -9,7 +9,7 @@ const SearchFilter = ({ onSearch }) => {
   };
 
   return (
-    <div className="search-filter mb-4">
+    <div className="search-filter mt-1">
       <input
         type="text"
         placeholder="Search products"
