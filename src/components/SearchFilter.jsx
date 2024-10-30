@@ -20,8 +20,8 @@ const SearchFilter = ({ handleSearch, setCategory }) => {
   };
 
   return (
-    <div className="search-filter flex flex-col lg:flex-row gap-3 items-center justify-between mb-4 relative">
-      <div className="relative w-full mt-2 md:w-1/3">
+    <div className="flex flex-col lg:flex-row gap-3 items-center justify-between mb-4 relative">
+      <div className="relative w-[95%] mt-2 md:w-1/3">
         <input
           type="text"
           value={searchInput}

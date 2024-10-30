@@ -39,12 +39,9 @@ const ProductList = ({ category, searchTerm }) => {
 
   if (isLoading) {
     return (
-      <div className="product-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
-        {Array.from({ length: 6 }).map((_, index) => (
-          <div
-            key={index}
-            className="product-card p-4 border rounded shadow animate-pulse"
-          >
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {Array.from({ length: 6 }).map((_, idx) => (
+          <div key={idx} className="p-4 border rounded shadow animate-pulse">
             <div className="h-48 w-full bg-gray-300 mb-2 rounded"></div>
             <div className="h-6 w-3/4 bg-gray-300 mb-2 rounded"></div>
             <div className="h-4 w-1/2 bg-gray-300 mb-1 rounded"></div>
@@ -58,7 +55,7 @@ const ProductList = ({ category, searchTerm }) => {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {paginatedProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
