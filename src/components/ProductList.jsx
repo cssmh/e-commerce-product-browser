@@ -11,7 +11,7 @@ const ProductList = ({ category, searchTerm }) => {
     queryKey: ["products"],
     queryFn: async () => {
       const res = await axios.get("https://fakestoreapi.com/products");
-      return res.data;
+      return res?.data;
     },
   });
   // console.log(products);
@@ -33,7 +33,7 @@ const ProductList = ({ category, searchTerm }) => {
 
   useEffect(() => {
     setPage(1);
-  }, [category, searchTerm]);
+  }, [category, searchTerm, limit]);
 
   if (isLoading) {
     return (
@@ -98,7 +98,6 @@ const ProductList = ({ category, searchTerm }) => {
             <select
               onChange={(e) => {
                 setLimit(parseInt(e.target.value, 10));
-                setPage(1);
               }}
               value={limit}
               style={{ outline: "none" }}
