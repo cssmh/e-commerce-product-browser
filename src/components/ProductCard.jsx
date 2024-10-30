@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => (
-  <div className="product-card flex flex-col border border-gray-200 rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+  <div className="product-card flex flex-col border border-gray-200 rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl mx-2 lg:mx-0">
     <div className="flex-grow relative">
       <img
         src={product.image}

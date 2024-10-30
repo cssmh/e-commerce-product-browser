@@ -1,7 +1,7 @@
 import axios from "axios";
 import ProductCard from "./ProductCard";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ProductList = ({ category, searchTerm }) => {
   const [page, setPage] = useState(1);
@@ -30,9 +30,13 @@ const ProductList = ({ category, searchTerm }) => {
     page * limit
   );
 
+  useEffect(() => {
+    setPage(1);
+  }, [category, searchTerm]);
+
   if (isLoading) {
     return (
-      <div className="product-list grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 gap-4">
+      <div className="product-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
         {Array.from({ length: 6 }).map((_, index) => (
           <div
             key={index}
@@ -50,8 +54,8 @@ const ProductList = ({ category, searchTerm }) => {
   }
 
   return (
-    <div className="product-list">
-      <div className="grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 gap-4">
+    <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
         {paginatedProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
