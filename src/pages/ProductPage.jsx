@@ -22,6 +22,7 @@ const ProductPage = () => {
 
   return (
     <div className="max-w-5xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
+      {/* flex items-center justify-center h-screen */}
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/2 flex justify-center items-center">
           <img
